@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { Form, Button, FormGroup, Input, Label } from 'reactstrap';
 
 export default function Login() {
+  const history = useHistory();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -11,6 +13,7 @@ export default function Login() {
 
   function handleSubmit(event) {
     event.preventDefault();
+    history.push('/search');
   }
 
   return (
@@ -37,7 +40,7 @@ export default function Login() {
             onChange={e => setPassword(e.target.value)}
           />
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <div className='custom-control custom-checkbox'>
             <Input
               type='checkbox'
@@ -48,13 +51,16 @@ export default function Login() {
               Remember me
             </Label>
           </div>
-        </FormGroup>
-        <Button block disabled={!validateForm()} type='submit'>
+        </FormGroup> */}
+        <Button block color='primary' disabled={!validateForm()} type='submit'>
           Login
         </Button>
         <p className='forgot-password text-right'>
-          Forgot <a href=' #'>password?</a>
+          Don't have an account? <a href='/signup'>Register</a>
         </p>
+        {/* <p className='forgot-password text-right'>
+          Forgot <a href=' #'>password?</a>
+        </p> */}
       </Form>
     </div>
   );
